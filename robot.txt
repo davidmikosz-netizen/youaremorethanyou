@@ -1,0 +1,9 @@
+# robots.txt for youaremorethanyou.com
+User-agent: *
+Allow: /
+
+# Prevent bots from aggressively scraping full audio binaries
+Disallow: /audio/
+
+# Optional: Sitemap location if you create one later
+Sitemap: https://youaremorethanyou.com/sitemap.xml
