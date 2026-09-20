@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You Are Not Just You — Dispatches on Your Internal Ecosystem</title>
+  <meta name="description" content="Micro-podcasts exploring the gut-brain axis, internal rewilding, and microbial ecology. Companion audio to fallow.garden.">
+  
+  <style>
+    :root {
+      --bg: #f9f8f5;
+      --card-bg: #ffffff;
+      --text: #1f2421;
+      --text-muted: #5e6962;
+      --accent: #2e4a38;
+      --accent-soft: #e8eee9;
+      --border: #e2ded7;
+      --line: #ece9e2;
+      --radius: 12px;
+      --font-serif: "Iowan Old Style", "Apple Garamond", "Baskerville", "Times New Roman", Georgia, serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 0 1.25rem 5rem;
+    }
+
+    .container {
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    /* Top Nav */
+    header {
+      padding: 2.5rem 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .ecosystem-link {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      transition: all 0.2s ease;
+    }
+
+    .ecosystem-link:hover {
+      background-color: var(--accent-soft);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 4.5rem 0 3.5rem;
+      text-align: left;
+    }
+
+    .hero-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.3rem, 5vw, 3.4rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+      font-weight: 400;
+      color: var(--text);
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 580px;
+      line-height: 1.65;
+    }
+
+    /* Episodes Section */
+    .episodes-title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .episodes-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .episodes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* Episode Card */
+    .episode-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+
+    .episode-card:hover {
+      border-color: #c7c1b5;
+    }
+
+    .episode-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .episode-meta span {
+      background: var(--accent-soft);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .duration {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .episode-card h2 {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      line-height: 1.25;
+      font-weight: 400;
+      margin-bottom: 0.85rem;
+      letter-spacing: -0.01em;
+    }
+
+    .episode-summary {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .takeaways {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      border-left: 2px solid var(--border);
+      padding-left: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .takeaways li {
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+
+    .takeaways li::before {
+      content: "•";
+      color: var(--accent);
+      font-weight: bold;
+      display: inline-block;
+      width: 0.75rem;
+      margin-left: -0.75rem;
+    }
+
+    /* Custom Audio Player */
+    .audio-player {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .play-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.15s ease;
+    }
+
+    .play-btn:hover {
+      background: #203527;
+    }
+
+    .play-btn svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    .progress-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 5px;
+      background: var(--border);
+      border-radius: 3px;
+      appearance: none;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .progress-bar::-webkit-slider-thumb {
+      appearance: none;
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .time-display {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: monospace;
+    }
+
+    /* Action Deck */
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .companion-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .btn-companion {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-companion:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* Site Footer */
+    footer {
+      margin-top: 5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .episode-card {
+        padding: 1.25rem;
+      }
+      .card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .btn-companion {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <a href="/" class="brand">youarenotjustyou</a>
+      <a href="https://fallow.garden" target="_blank" rel="noopener" class="ecosystem-link">Part of fallow.garden ↗</a>
+    </header>
+
+    <section class="hero">
+      <span class="hero-tag">Field Notes &amp; Audio Overviews</span>
+      <h1>You Are Not Just You</h1>
+      <p>Micro-dispatches exploring internal ecology, the gut-brain axis, and what happens when we stop treating our bodies as machines and start treating them as habitats.</p>
+    </section>
+
+    <main>
+      <h2 class="episodes-title">Episodes</h2>
+
+      <div class="episodes-list">
+
+        <!-- Episode 01 -->
+        <article class="episode-card">
+          <div class="episode-meta">
+            <span>Episode 01</span>
+            <span class="duration">3:15 min</span>
+          </div>
+          <h2>The Non-Singular Self: Gut, Brain, and Holobiont</h2>
+          <p class="episode-summary">Why human biology is increasingly discarding the myth of the isolated individual in favor of the holobiont: a collaborative collective where 38 trillion bacterial cells help govern mood, stress, and thought.</p>
+          
+          <ul class="takeaways">
+            <li>The vagus nerve as a high-bandwidth bidirectional conversation line.</li>
+            <li>Microbial synthesis of neurotransmitters (GABA, serotonin, short-chain fatty acids).</li>
+            <li>How reframing mood from "mental state" to "systemic ecology" shifts self-compassion.</li>
+          </ul>
+
+          <div class="audio-player" data-audio="audio/ep01-gut-brain.mp3">
+            <button class="play-btn" aria-label="Play Episode 1">
+              <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </button>
+            <div class="progress-wrap">
+              <input type="range" class="progress-bar" value="0" min="0" max="100" step="0.1">
+              <div class="time-display">
+                <span class="current-time">0:00</span>
+                <span class="total-duration">3:15</span>
+              </div>
+            </div>
+            <audio src="audio/ep01-gut-brain.mp3" preload="metadata"></audio>
+          </div>
+
+          <div class="card-footer">
+            <span class="companion-label">Interactive Companion App:</span>
+            <a href="https://fallow.garden" target="_blank" rel="noopener" class="btn-companion">Open Multitudes ↗</a>
+          </div>
+        </article>
+
+        <!-- Episode 02 -->
+        <article class="episode-card">
+          <div class="episode-meta">
+            <span>Episode 02</span>
+            <span class="duration">2:50 min</span>
+          </div>
+          <h2>Polyculture vs. Monoculture: The 30-Plant Principle</h2>
+          <p class="episode-summary">Agricultural monocultures collapse under the slightest stress; polycultures endure. The American Gut Project showed why dietary species diversity—aiming for 30 distinct plants weekly—builds resilience inside your colon.</p>
+          
+          <ul class="takeaways">
+            <li>Why fiber is not monolithic: distinct plant species feed specialized bacterial niches.</li>
+            <li>The danger of hyper-filtered, repetitive dietary monocultures.</li>
+            <li>How to track botanical variety without calorie counts or obsession.</li>
+          </ul>
+
+          <div class="audio-player" data-audio="audio/ep02-inner-meadow.mp3">
+            <button class="play-btn" aria-label="Play Episode 2">
+              <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </button>
+            <div class="progress-wrap">
+              <input type="range" class="progress-bar" value="0" min="0" max="100" step="0.1">
+              <div class="time-display">
+                <span class="current-time">0:00</span>
+                <span class="total-duration">2:50</span>
+              </div>
+            </div>
+            <audio src="audio/ep02-inner-meadow.mp3" preload="metadata"></audio>
+          </div>
+
+          <div class="card-footer">
+            <span class="companion-label">Interactive Companion App:</span>
+            <a href="https://fallow.garden" target="_blank" rel="noopener" class="btn-companion">Open Inner Meadow ↗</a>
+          </div>
+        </article>
+
+        <!-- Episode 03 -->
+        <article class="episode-card">
+          <div class="episode-meta">
+            <span>Episode 03</span>
+            <span class="duration">3:40 min</span>
+          </div>
+          <h2>Rewilding Devastated Terrain: The Science of FMT</h2>
+          <p class="episode-summary">Moving past cultural squeamishness into radical restoration. When broad-spectrum antibiotics clear-cut an internal rainforest, fecal microbiota restoration represents true environmental re-seeding.</p>
+          
+          <ul class="takeaways">
+            <li>The distinction between transient probiotics and systemic biome transplantation.</li>
+            <li>Clinical precedent: from stubborn *C. difficile* infections to emerging metabolic research.</li>
+            <li>Restoring ecological equilibrium when an internal baseline is wiped out.</li>
+          </ul>
+
+          <div class="audio-player" data-audio="audio/ep03-repoopulate.mp3">
+            <button class="play-btn" aria-label="Play Episode 3">
+              <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </button>
+            <div class="progress-wrap">
+              <input type="range" class="progress-bar" value="0" min="0" max="100" step="0.1">
+              <div class="time-display">
+                <span class="current-time">0:00</span>
+                <span class="total-duration">3:40</span>
+              </div>
+            </div>
+            <audio src="audio/ep03-repoopulate.mp3" preload="metadata"></audio>
+          </div>
+
+          <div class="card-footer">
+            <span class="companion-label">Interactive Companion App:</span>
+            <a href="https://fallow.garden" target="_blank" rel="noopener" class="btn-companion">Open Re-Poopulate ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </main>
+
+    <footer>
+      <span>&copy; <span id="year"></span> youarenotjustyou.com</span>
+      <span>Produced with NotebookLM research notes &bull; <a href="https://fallow.garden">fallow.garden</a></span>
+    </footer>
+  </div>
+
+  <script>
+    // Set dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Custom Audio Player logic
+    const players = document.querySelectorAll('.audio-player');
+
+    players.forEach(player => {
+      const audio = player.querySelector('audio');
+      const playBtn = player.querySelector('.play-btn');
+      const progressBar = player.querySelector('.progress-bar');
+      const currentTimeSpan = player.querySelector('.current-time');
+      const durationSpan = player.querySelector('.total-duration');
+
+      function formatTime(seconds) {
+        if (isNaN(seconds)) return "0:00";
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+      }
+
+      audio.addEventListener('loadedmetadata', () => {
+        durationSpan.textContent = formatTime(audio.duration);
+      });
+
+      playBtn.addEventListener('click', () => {
+        // Pause all other players
+        document.querySelectorAll('audio').forEach(otherAudio => {
+          if (otherAudio !== audio) {
+            otherAudio.pause();
+            const otherBtn = otherAudio.closest('.audio-player').querySelector('.play-btn');
+            otherBtn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+          }
+        });
+
+        if (audio.paused) {
+          audio.play();
+          playBtn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+        } else {
+          audio.pause();
+          playBtn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+        }
+      });
+
+      audio.addEventListener('timeupdate', () => {
+        const percent = (audio.currentTime / audio.duration) * 100;
+        progressBar.value = percent || 0;
+        currentTimeSpan.textContent = formatTime(audio.currentTime);
+      });
+
+      progressBar.addEventListener('input', () => {
+        const seekTime = (progressBar.value / 100) * audio.duration;
+        audio.currentTime = seekTime;
+      });
+
+      audio.addEventListener('ended', () => {
+        playBtn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+        progressBar.value = 0;
+        currentTimeSpan.textContent = '0:00';
+      });
+    });
+  </script>
+</body>
+</html>
