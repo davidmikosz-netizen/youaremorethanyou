@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>You Are More Than You — Dispatches on Your Internal Ecosystem</title>
-<script data-goatcounter="https://youaremore.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>  
+  <script data-goatcounter="https://youaremore.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>  
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <meta name="description" content="Quick, curious audio stories about the gut-brain axis, internal rewilding, and microbial ecology. Companion audio to fallow.garden.">
+  <meta name="description" content="Audio episodes and illustrated margin notes on the gut-brain axis, attention, internal rewilding, and microbial ecology. Companion space to fallow.garden.">
   
   <style>
     :root {
@@ -114,8 +114,8 @@
       line-height: 1.65;
     }
 
-    /* Episodes Section */
-    .episodes-title {
+    /* Section Headings */
+    .section-title {
       font-family: var(--font-serif);
       font-size: 1.5rem;
       font-weight: 400;
@@ -125,7 +125,7 @@
       gap: 0.75rem;
     }
 
-    .episodes-title::after {
+    .section-title::after {
       content: "";
       flex: 1;
       height: 1px;
@@ -332,6 +332,99 @@
       color: #fff;
     }
 
+    /* Margin Notes Section */
+    .margin-notes-section {
+      margin-top: 4.5rem;
+    }
+
+    .margin-notes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .margin-note-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      transition: border-color 0.15s ease;
+    }
+
+    .margin-note-card:hover {
+      border-color: #c7c1b5;
+    }
+
+    .note-media {
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bg);
+      border: 1px solid var(--border);
+    }
+
+    .note-media video {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #141715;
+    }
+
+    .note-placeholder {
+      aspect-ratio: 1 / 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      gap: 0.4rem;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+    }
+
+    .note-placeholder svg {
+      color: var(--accent);
+      opacity: 0.7;
+    }
+
+    .note-body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .note-source {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+
+    .note-body h3 {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--text);
+      margin-top: -0.25rem;
+    }
+
+    .note-body p {
+      font-size: 0.94rem;
+      color: var(--text);
+      line-height: 1.65;
+    }
+
     /* Site Footer & Support Block */
     footer {
       margin-top: 5rem;
@@ -426,7 +519,7 @@
     }
 
     /* Mobile Adaptations */
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
       header {
         flex-direction: column;
         align-items: flex-start;
@@ -436,8 +529,17 @@
       .hero {
         padding: 2.75rem 0 2.25rem;
       }
-      .episode-card {
+      .episode-card,
+      .margin-note-card {
         padding: 1.25rem;
+      }
+      .margin-note-card {
+        grid-template-columns: 1fr;
+        gap: 1.15rem;
+      }
+      .note-media,
+      .note-placeholder {
+        max-width: 260px;
       }
       .card-footer {
         flex-direction: column;
@@ -470,122 +572,167 @@
     </header>
 
     <section class="hero">
-      <span class="hero-tag">Conversations on Inner Ecology</span>
+      <span class="hero-tag">Conversations &amp; Margin Notes on Inner Ecology</span>
       <h1>You Are More Than You</h1>
-      <p>Quick, curious audio stories about the wild, living world inside and outside of you. What happens when we stop treating our bodies and brains like stubborn machines to fix, and start treating them like bustling internal gardens?</p>
+      <p>Quick, curious audio stories and illustrated book notes about the wild, living world inside and outside of you. What happens when we stop treating our bodies and brains like stubborn machines to fix, and start treating them like bustling internal gardens?</p>
     </section>
 
     <main>
-      <h2 class="episodes-title">Episodes</h2>
+      <!-- Episodes Section -->
+      <section aria-labelledby="episodes-heading">
+        <h2 id="episodes-heading" class="section-title">Episodes</h2>
 
-      <div class="episodes-list">
+        <div class="episodes-list">
 
-        <!-- Episode 01 -->
-        <article class="episode-card">
-          <div class="episode-meta">
-            <span>Episode 01</span>
-            <span class="duration">5:09 min</span>
-          </div>
-          <h2>You Are a Supraorganism: The Mind-Gut Connection &amp; Your Inner Multitudes</h2>
-          <p class="episode-summary">In a shift as profound as realizing the sun does not orbit the Earth, modern biology reveals that each of us is a walking ecosystem with more microbial cells than human ones. Explore how your gut acts as a real-time sensory organ—tasting what you eat, shaping your cravings, and conducting a constant chemical dialogue with your brain.</p>
+          <!-- Episode 01 -->
+          <article class="episode-card">
+            <div class="episode-meta">
+              <span>Episode 01</span>
+              <span class="duration">5:09 min</span>
+            </div>
+            <h2>You Are a Supraorganism: The Mind-Gut Connection &amp; Your Inner Multitudes</h2>
+            <p class="episode-summary">In a shift as profound as realizing the sun does not orbit the Earth, modern biology reveals that each of us is a walking ecosystem with more microbial cells than human ones. Explore how your gut acts as a real-time sensory organ—tasting what you eat, shaping your cravings, and conducting a constant chemical dialogue with your brain.</p>
+            
+            <ul class="takeaways">
+              <li>The vagus nerve superhighway: why 80% of signals travel UP from your gut to your brain.</li>
+              <li>How bitter and sweet taste receptors inside your GI tract monitor your food in real time.</li>
+              <li>How bacterial metabolites and dopamine signaling shape cravings, inflammation, and mental clarity.</li>
+            </ul>
+
+            <div class="audio-player" data-audio="Audio/ep01-gut-brain.m4a">
+              <button class="play-btn" aria-label="Play Episode 1">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <div class="progress-wrap">
+                <input type="range" class="progress-bar" value="0" min="0" max="100" step="0.1">
+                <div class="time-display">
+                  <span class="current-time">0:00</span>
+                  <span class="total-duration">5:09</span>
+                </div>
+              </div>
+              <audio src="Audio/ep01-gut-brain.m4a" preload="metadata"></audio>
+            </div>
+
+            <div class="card-footer">
+              <span class="companion-label">Interactive Companion App:</span>
+              <a href="https://fallow.garden/episodes/multitudes/index.html" target="_blank" rel="noopener" class="btn-companion">Open Multitudes ↗</a>
+            </div>
+          </article>
+
+          <!-- Episode 02 -->
+          <article class="episode-card">
+            <div class="episode-meta">
+              <span>Episode 02</span>
+              <span class="duration">5:22 min</span>
+            </div>
+            <h2>Your Body Is a Meadow: Why Your Internal Landscape Craves Wild Variety</h2>
+            <p class="episode-summary">Farms that only plant one thing are brittle; meadows with diversity endure. The <a href="https://microsetta.ucsd.edu/" target="_blank" rel="noopener" class="inline-link">American Gut Project</a> showed why dietary species diversity—aiming for 30 distinct plants weekly—builds resilience inside your colon.</p>
           
-          <ul class="takeaways">
-            <li>The vagus nerve superhighway: why 80% of signals travel UP from your gut to your brain.</li>
-            <li>How bitter and sweet taste receptors inside your GI tract monitor your food in real time.</li>
-            <li>How bacterial metabolites and dopamine signaling shape cravings, inflammation, and mental clarity.</li>
-          </ul>
+            <ul class="takeaways">
+              <li>Why fiber is not monolithic: distinct plant species feed specialized bacterial niches.</li>
+              <li>How frequently eating the same processed foods reduces your gut diversity.</li>
+              <li>How to track botanical variety without calorie counts or obsession.</li>
+            </ul>
 
-          <div class="audio-player" data-audio="Audio/ep01-gut-brain.m4a">
-            <button class="play-btn" aria-label="Play Episode 1">
-              <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            </button>
-            <div class="progress-wrap">
-              <input type="range" class="progress-bar" value="0" min="0" max="100" step="0.1">
-              <div class="time-display">
-                <span class="current-time">0:00</span>
-                <span class="total-duration">5:09</span>
+            <div class="audio-player" data-audio="Audio/ep02-inner-meadow.m4a">
+              <button class="play-btn" aria-label="Play Episode 2">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <div class="progress-wrap">
+                <input type="range" class="progress-bar" value="0" min="0" max="100" step="0.1">
+                <div class="time-display">
+                  <span class="current-time">0:00</span>
+                  <span class="total-duration">5:22</span>
+                </div>
+              </div>
+              <audio src="Audio/ep02-inner-meadow.m4a" preload="metadata"></audio>
+            </div>
+
+            <div class="card-footer">
+              <span class="companion-label">Interactive Companion App:</span>
+              <a href="https://fallow.garden/episodes/inner-meadow" target="_blank" rel="noopener" class="btn-companion">Open Inner Meadow ↗</a>
+            </div>
+          </article>
+
+          <!-- Episode 03 -->
+          <article class="episode-card">
+            <div class="episode-meta">
+              <span>Episode 03</span>
+              <span class="duration">6:16 min</span>
+            </div>
+            <h2>Your Body Is an Ancient Forest: How to Reseed a Devastated Ecosystem</h2>
+            <p class="episode-summary">An ancient forest doesn't regenerate from a single packet of flower seeds, and a wiped-out gut won't recover with just a store-bought pill. A practical guide to rebuilding your gut biome after a colonoscopy, antibiotics, or a stomach bug—pairing global healing foods with nervous system calm.</p>
+            
+            <ul class="takeaways">
+              <li>Why how you eat matters: calming the vagus nerve with box breathing and thorough chewing before meals.</li>
+              <li>Phase-by-phase nutrition to soothe stripped mucosa, starve opportunistic yeast, and re-seed flora.</li>
+              <li>Full range of foods to recover with including newly expanded global menu - from rice congee and dashi broth to simmered daikon, khichdi, and natto.</li>
+            </ul>
+
+            <div class="audio-player" data-audio="Audio/ep03-repoopulate.m4a">
+              <button class="play-btn" aria-label="Play Episode 3">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <div class="progress-wrap">
+                <input type="range" class="progress-bar" value="0" min="0" max="100" step="0.1">
+                <div class="time-display">
+                  <span class="current-time">0:00</span>
+                  <span class="total-duration">6:16</span>
+                </div>
+              </div>
+              <audio src="Audio/ep03-repoopulate.m4a" preload="metadata"></audio>
+            </div>
+
+            <div class="card-footer">
+              <span class="companion-label">Interactive Companion App:</span>
+              <a href="https://getrepoopulate.com" target="_blank" rel="noopener" class="btn-companion">Open Re-Poopulate ↗</a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Margin Notes Section -->
+      <section class="margin-notes-section" aria-labelledby="notes-heading">
+        <h2 id="notes-heading" class="section-title">Margin Notes</h2>
+
+        <div class="margin-notes-list">
+
+          <!-- Margin Note 01 -->
+          <article class="margin-note-card">
+            <div class="note-media">
+              <!-- Save your clip from https://share.gemini.google/rCKohBKA2clc to Videos/note01-patience.mp4 -->
+              <video src="Videos/note01-patience.mp4" controls preload="metadata" playsinline></video>
+            </div>
+            <div class="note-body">
+              <span class="note-source">Time Management for Mortals · Oliver Burkeman</span>
+              <h3>Patience</h3>
+              <p>In <em>Time Management for Mortals</em>, art historian Jennifer Roberts proposes spending three hours looking at a single painting. We usually treat looking at art like grabbing a quick coffee: get your view and move on. Standing in front of one painting for three hours isn't about some grand aesthetic breakthrough on minute one. It’s what happens once your initial impatience wears off and you’ve run out of quick impressions, forcing you to actually see what’s sitting right there on the canvas.</p>
+              <p>There’s also a practical jolt in how it messes with your clock. When you give three hours to a single object like the painting, you stop thinking that each minute of the day has to be cashed in for productivity. You realize how thin a quick glance really is—and how much more room a day has when you aren’t constantly sprinting past what’s in front of you.</p>
+            </div>
+          </article>
+
+          <!-- Margin Note 02 -->
+          <article class="margin-note-card">
+            <div class="note-media">
+              <!-- Replace with <video src="Videos/note02-craving.mp4" controls preload="metadata" playsinline></video> once uploaded -->
+              <div class="note-placeholder">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span>Clip coming soon<br><code>Videos/note02-craving.mp4</code></span>
               </div>
             </div>
-            <audio src="Audio/ep01-gut-brain.m4a" preload="metadata"></audio>
-          </div>
-
-          <div class="card-footer">
-            <span class="companion-label">Interactive Companion App:</span>
-            <a href="https://fallow.garden/episodes/multitudes/index.html" target="_blank" rel="noopener" class="btn-companion">Open Multitudes ↗</a>
-          </div>
-        </article>
-
-        <!-- Episode 02 -->
-        <article class="episode-card">
-          <div class="episode-meta">
-            <span>Episode 02</span>
-            <span class="duration">5:22 min</span>
-          </div>
-          <h2>Your Body Is a Meadow: Why Your Internal Landscape Craves Wild Variety</h2>
-          <p class="episode-summary">Farms that only plant one thing are brittle; meadows with diversity endure. The <a href="https://microsetta.ucsd.edu/" target="_blank" rel="noopener" class="inline-link">American Gut Project</a> showed why dietary species diversity—aiming for 30 distinct plants weekly—builds resilience inside your colon.</p>
-        
-          <ul class="takeaways">
-            <li>Why fiber is not monolithic: distinct plant species feed specialized bacterial niches.</li>
-            <li>How frequently eating the same processed foods reduces your gut diversity.</li>
-            <li>How to track botanical variety without calorie counts or obsession.</li>
-          </ul>
-
-          <div class="audio-player" data-audio="Audio/ep02-inner-meadow.m4a">
-            <button class="play-btn" aria-label="Play Episode 2">
-              <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            </button>
-            <div class="progress-wrap">
-              <input type="range" class="progress-bar" value="0" min="0" max="100" step="0.1">
-              <div class="time-display">
-                <span class="current-time">0:00</span>
-                <span class="total-duration">5:22</span>
-              </div>
+            <div class="note-body">
+              <span class="note-source">The Craving Mind · Judson Brewer</span>
+              <h3>Finding the Space to Resist Craving</h3>
+              <p>Cravings feel like something you have to fill immediately—reach for the phone, open the fridge, refresh the page. In <em>The Craving Mind</em>, Judson Brewer explores the RAIN practice (Recognize, Allow, Investigate, Non-identify). RAIN is a kind of speed bump in the middle of your cravings. Instead of trying to power through an urge or caving to it on autopilot, you pay attention to it. Let the restlessness (and uncomfortableness) sit there without trying to shove it out the door. Spend some time to get a little nosy about what it actually feels like in your body—a tight jaw, a hollow buzz in your chest, a stray thought dressed up as an emergency.</p>
+              <p>The last step is what actually shifts things: realizing that an urge showing up in your head isn't the same thing as you deciding to act on it. Once you stop treating every twitch of boredom or irritation like a personal mandate that needs instant relief, the craving runs out of steam on its own. You don't suddenly become immune to hooks, you just stop taking every one of them so personally.</p>
             </div>
-            <audio src="Audio/ep02-inner-meadow.m4a" preload="metadata"></audio>
-          </div>
+          </article>
 
-          <div class="card-footer">
-            <span class="companion-label">Interactive Companion App:</span>
-            <a href="https://fallow.garden/episodes/inner-meadow" target="_blank" rel="noopener" class="btn-companion">Open Inner Meadow ↗</a>
-          </div>
-        </article>
-
-        <!-- Episode 03 -->
-        <article class="episode-card">
-          <div class="episode-meta">
-            <span>Episode 03</span>
-            <span class="duration">6:16 min</span>
-          </div>
-          <h2>Your Body Is an Ancient Forest: How to Reseed a Devastated Ecosystem</h2>
-          <p class="episode-summary">An ancient forest doesn't regenerate from a single packet of flower seeds, and a wiped-out gut won't recover with just a store-bought pill. A practical guide to rebuilding your gut biome after a colonoscopy, antibiotics, or a stomach bug—pairing global healing foods with nervous system calm.</p>
-          
-          <ul class="takeaways">
-            <li>Why how you eat matters: calming the vagus nerve with box breathing and thorough chewing before meals.</li>
-            <li>Phase-by-phase nutrition to soothe stripped mucosa, starve opportunistic yeast, and re-seed flora.</li>
-            <li>Full range of foods to recover with including newly expanded global menu - from rice congee and dashi broth to simmered daikon, khichdi, and natto.</li>
-          </ul>
-
-          <div class="audio-player" data-audio="Audio/ep03-repoopulate.m4a">
-            <button class="play-btn" aria-label="Play Episode 3">
-              <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            </button>
-            <div class="progress-wrap">
-              <input type="range" class="progress-bar" value="0" min="0" max="100" step="0.1">
-              <div class="time-display">
-                <span class="current-time">0:00</span>
-                <span class="total-duration">1:49</span>
-              </div>
-            </div>
-            <audio src="Audio/ep03-repoopulate.m4a" preload="metadata"></audio>
-          </div>
-
-          <div class="card-footer">
-            <span class="companion-label">Interactive Companion App:</span>
-            <a href="https://getrepoopulate.com" target="_blank" rel="noopener" class="btn-companion">Open Re-Poopulate ↗</a>
-          </div>
-        </article>
-
-      </div>
+        </div>
+      </section>
     </main>
 
     <footer>
@@ -618,7 +765,7 @@
 
       <div class="footer-bottom">
         <span>&copy; <span id="year"></span> youaremorethanyou.com</span>
-        <span>A companion audio space to <a href="https://fallow.garden" target="_blank" rel="noopener">fallow.garden</a></span>
+        <span>A companion space to <a href="https://fallow.garden" target="_blank" rel="noopener">fallow.garden</a></span>
       </div>
     </footer>
   </div>
